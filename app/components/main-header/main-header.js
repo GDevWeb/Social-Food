@@ -4,6 +4,8 @@ import Link from "next/link";
 import MainHeaderBackground from "./main-header-background";
 import classes from "./main-header.module.css";
 function MainHeader() {
+  console.log("Hello CSR");
+
   return (
     <>
       <MainHeaderBackground />
