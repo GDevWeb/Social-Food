@@ -3,9 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import MainHeaderBackground from "./main-header-background";
 import classes from "./main-header.module.css";
-function MainHeader() {
-  console.log("Hello CSR");
+import NavLink from "./nav-link";
 
+function MainHeader() {
   return (
     <>
       <MainHeaderBackground />
@@ -21,12 +21,8 @@ function MainHeader() {
         </Link>
         <nav className={classes.nav}>
           <ul>
-            <li>
-              <Link href={"/meals"}>Browse Meals</Link>
-            </li>
-            <li>
-              <Link href={"/community"}>Foodies community</Link>
-            </li>
+            <NavLink href={"/meals"} children={"Browse your meals"} />
+            <NavLink href={"/community"} children={"Community"} />
           </ul>
         </nav>
       </header>
