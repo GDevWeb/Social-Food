@@ -21,8 +21,8 @@ function MainHeader() {
         </Link>
         <nav className={classes.nav}>
           <ul>
-            <NavLink href={"/meals"} children={"Browse your meals"} />
-            <NavLink href={"/community"} children={"Community"} />
+            <NavLink href={"/meals"}>Browse your meals</NavLink>
+            <NavLink href={"/community"}>Community</NavLink>
           </ul>
         </nav>
       </header>

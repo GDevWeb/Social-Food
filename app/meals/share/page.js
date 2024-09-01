@@ -1,12 +1,27 @@
-import shareMeal from "@/lib/actions";
+"use client";
+import { shareMeal } from "@/lib/actions";
+import { useState } from "react"; // Use React's useState hook
 import ImagePicker from "../image-picker";
+import MealsFormSubmit from "../meals/meals-form-submit";
 import classes from "./page.module.css";
 
 export default function ShareMealPage() {
-  // 0.***Hooks***
-  // 1.***State***
-  // 2.***Functions***
-  // 3.***Render***
+  // ***State***
+  const [state, setState] = useState({ message: null });
+
+  // ***Functions***
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const result = await shareMeal(formData);
+
+    if (result.message) {
+      setState({ message: result.message });
+    }
+  };
+
+  // ***Render***
   return (
     <>
       <header className={classes.header}>
@@ -16,24 +31,24 @@ export default function ShareMealPage() {
         <p>Or any other meal you feel needs sharing!</p>
       </header>
       <main className={classes.main}>
-        <form className={classes.form} action={shareMeal}>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <div className={classes.row}>
             <p>
               <label htmlFor="name">Your name</label>
-              <input type="text" id="name" name="name" required />
+              <input type="text" id="name" name="name" />
             </p>
             <p>
               <label htmlFor="email">Your email</label>
-              <input type="email" id="email" name="email" required />
+              <input type="email" id="email" name="email" />
             </p>
           </div>
           <p>
             <label htmlFor="title">Title</label>
-            <input type="text" id="title" name="title" required />
+            <input type="text" id="title" name="title" />
           </p>
           <p>
             <label htmlFor="summary">Short Summary</label>
-            <input type="text" id="summary" name="summary" required />
+            <input type="text" id="summary" name="summary" />
           </p>
           <p>
             <label htmlFor="instructions">Instructions</label>
@@ -41,12 +56,12 @@ export default function ShareMealPage() {
               id="instructions"
               name="instructions"
               rows="10"
-              required
             ></textarea>
           </p>
           <ImagePicker label={"Your image"} name={"image"} />
+          {state.message && <p>{state.message}</p>}
           <p className={classes.actions}>
-            <button type="submit">Share Meal</button>
+            <MealsFormSubmit />
           </p>
         </form>
       </main>
