@@ -17,7 +17,7 @@ function MainHeader() {
             className={classes.logo}
             priority
           />
-          NextLevel Food
+          Foodies
         </Link>
         <nav className={classes.nav}>
           <ul>
